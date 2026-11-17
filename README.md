@@ -9,7 +9,11 @@ Powered by **Kokoro-82M** running on ONNX Runtime on the CPU. No GPU required, n
 text → sentence chunks → Kokoro (ONNX, 4 threads) → WAV chunks → browser Web Audio
 ```
 
+
 ---
+
+## Installer Download Links:
+- Local Voice: [v1.0.1](https://drive.google.com/file/d/1b4Uwy6vDQoPRZF2O1SDxTMYYz3HFlWqB/view?usp=sharing)
 
 ## Quick start
 
