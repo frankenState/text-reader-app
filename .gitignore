@@ -1,0 +1,36 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local tooling caches (kept on D: deliberately)
+.uv-cache/
+.uv-python/
+
+# Model weights (~350 MB) are downloaded, not committed
+models/
+
+# Runtime artifacts
+exports/
+*.wav
+*.log
+server.pid
+stream.bin
+*_headers.txt
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.taste-skill/
+
+# Desktop packaging (Node + Rust + PyInstaller output)
+node_modules/
+.cargo-target/
+src-tauri/target/
+src-tauri/gen/
+src-tauri/sidecar/
+src-tauri/models/
+sidecar/
+build/
+releases/
+.tauri-build.log

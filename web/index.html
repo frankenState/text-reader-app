@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-radius="soft">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Local Voice: text to speech that runs on this machine</title>
+<meta name="description" content="Paste text and hear it read in one of 54 built-in voices. The model runs on your own CPU, so there is no account, no upload and no character limit." />
+<meta name="theme-color" content="#f6f3ed" />
+<meta property="og:title" content="Local Voice" />
+<meta property="og:description" content="Offline text to speech with 54 built-in voices, running entirely on your own machine." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<a class="skip-link" href="#writer">Skip to the text</a>
+
+<header class="top">
+  <div class="shell top__inner">
+    <p class="brand">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 10.5v3M8.5 7v10M13 4.5v15M17.5 8v8M21 10.5v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+      <span>Local Voice</span>
+    </p>
+    <p class="engine" role="status" aria-live="polite">
+      <span class="dot" id="statusDot" aria-hidden="true"></span>
+      <span id="engineLine">Starting engine</span>
+    </p>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="masthead" data-enter>
+    <h1>Type it. Hear it. Nothing leaves this machine.</h1>
+    <!--<p class="lead">A reading voice that lives on your own processor. Paste an article, a page of notes or a whole chapter, then play it or keep the audio.</p>-->
+  </section>
+
+  <div class="desk">
+    <section class="pane writer" id="writer" aria-labelledby="writerHead">
+      <div class="pane__head">
+        <h2 id="writerHead">Your text</h2>
+        <span class="count" id="charCount">0 characters</span>
+      </div>
+
+      <label class="visually-hidden" for="text">Text to read aloud</label>
+      <textarea id="text" spellcheck="true" placeholder="Paste or type the text you want read aloud."></textarea>
+
+      <div class="pane__foot">
+        <span class="hint"><kbd>Ctrl</kbd><span aria-hidden="true">+</span><kbd>Enter</kbd> plays<span class="sep" aria-hidden="true">·</span><kbd>Esc</kbd> stops</span>
+        <span class="hint hint--soft">WAV · 24 kHz</span>
+      </div>
+    </section>
+
+    <aside class="pane rail" id="rail" aria-labelledby="railHead">
+      <div class="pane__head">
+        <h2 id="railHead">Playback</h2>
+        <span class="count" id="railNote">54 voices</span>
+      </div>
+
+      <div class="field">
+        <label for="voice">Reader</label>
+        <div class="select">
+          <select id="voice"></select>
+          <svg viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field__row">
+          <label for="speed">Speed</label>
+          <output id="speedValue" for="speed">1.00×</output>
+        </div>
+        <input id="speed" type="range" min="0.6" max="1.6" step="0.05" value="1" />
+        <div class="scale" aria-hidden="true"><span>Slower</span><span>Faster</span></div>
+      </div>
+
+      <div class="actions">
+        <button id="play" class="btn btn--primary" disabled>
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3.4v9.2L12.6 8 5 3.4Z" fill="currentColor" /></svg>
+          <span id="playLabel">Play</span>
+        </button>
+        <div class="actions__row">
+          <button id="stop" class="btn btn--quiet" disabled>
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="4.6" y="4.6" width="6.8" height="6.8" rx="1.2" fill="currentColor" /></svg>
+            <span>Stop</span>
+          </button>
+          <button id="download" class="btn btn--quiet" disabled>
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 2.5v7.2m0 0 3-3m-3 3-3-3M3 12.6h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span id="downloadLabel">Save WAV</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="progress" id="progressWrap" hidden>
+        <div class="progress__bar"><div class="progress__fill" id="progressBar"></div></div>
+        <p class="progress__text" id="progressText" role="status" aria-live="polite"></p>
+      </div>
+
+      <p class="note" id="error" role="alert" hidden></p>
+    </aside>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="shell foot__inner">
+    <p id="footInfo">Kokoro-82M · 24 kHz · runs offline</p>
+    <p class="foot__rate" id="footRate"></p>
+  </div>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

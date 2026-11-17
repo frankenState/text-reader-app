@@ -1,0 +1,19 @@
+[project]
+name = "text-to-voice-app"
+version = "0.1.0"
+description = "Fully offline text-to-speech powered by Kokoro-82M (ONNX)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "kokoro-onnx==0.6.1",
+    "onnxruntime>=1.20.1",
+    "numpy>=2.0.2",
+    "soundfile>=0.12.1",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+]
+
+[dependency-groups]
+dev = []
+
+[tool.uv]
+package = false
